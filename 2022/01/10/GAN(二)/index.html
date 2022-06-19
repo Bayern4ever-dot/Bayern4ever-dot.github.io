@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GAN(二) | Lizh Blog</title><meta name="keywords" content="Neural Network"><meta name="author" content="Lizh"><meta name="copyright" content="Lizh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="上一节我们对GAN网络进行了初步简介，后面会对理论推导、GAN的魔改及应用作详细的介绍。本文对GAN的实际应用做简要介绍 一、数据生成GAN的生成模型可以拟合数据的真实分布，因此可以用来伪造显示不存在的数据。DCGAN是第一个用全卷积网络做数据生成的，下面是它的基本结构和生成的数据。还可以生成手写数字但DCGAN有个问题就是无法控制生成的数字是1还是其它，于是有了conditional GAN，结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAN(二)">
+<meta property="og:url" content="http://example.com/2022/01/10/GAN(%E4%BA%8C)/index.html">
+<meta property="og:site_name" content="Lizh Blog">
+<meta property="og:description" content="上一节我们对GAN网络进行了初步简介，后面会对理论推导、GAN的魔改及应用作详细的介绍。本文对GAN的实际应用做简要介绍 一、数据生成GAN的生成模型可以拟合数据的真实分布，因此可以用来伪造显示不存在的数据。DCGAN是第一个用全卷积网络做数据生成的，下面是它的基本结构和生成的数据。还可以生成手写数字但DCGAN有个问题就是无法控制生成的数字是1还是其它，于是有了conditional GAN，结">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png">
+<meta property="article:published_time" content="2022-01-10T07:49:29.004Z">
+<meta property="article:modified_time" content="2022-01-10T07:51:15.441Z">
+<meta property="article:author" content="Lizh">
+<meta property="article:tag" content="Neural Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/10/GAN(%E4%BA%8C)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAN(二)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-10 15:51:15'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/source/css/background.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lizh Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAN(二)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-10T07:49:29.004Z" title="Created 2022-01-10 15:49:29">2022-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-10T07:51:15.441Z" title="Updated 2022-01-10 15:51:15">2022-01-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">367</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>1min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAN(二)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>上一节我们对GAN网络进行了初步简介，后面会对理论推导、GAN的魔改及应用作详细的介绍。<br>本文对GAN的实际应用做简要介绍</p>
+<h2 id="一、数据生成"><a href="#一、数据生成" class="headerlink" title="一、数据生成"></a>一、数据生成</h2><p>GAN的生成模型可以拟合数据的真实分布，因此可以用来伪造显示不存在的数据。DCGAN是第一个用全卷积网络做数据生成的，下面是它的基本结构和生成的数据。<br><img src="https://img-blog.csdnimg.cn/6532f148861f41869c71c0c450fb3e36.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>还可以生成手写数字<br><img src="https://img-blog.csdnimg.cn/f21c70ec7bfa49a6919cd2f98db0cbb0.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>但DCGAN有个问题就是无法控制生成的数字是1还是其它，于是有了conditional GAN，结构如下<br><img src="https://img-blog.csdnimg.cn/61754aa09425418aa680dbc5958ed743.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>将标签信息encode为一个向量，加入到了generator和discriminator的训练中，优化目标也自然而然发生了变化，变成了条件概率：<br><img src="https://img-blog.csdnimg.cn/3d2ab9e84c33410ea125b2da9e729a2a.png#pic_center" alt="在这里插入图片描述"><br>由于CGAN的出现，我们可以控制GAN的输出，也就可以从文本生成图像。<br><img src="https://img-blog.csdnimg.cn/3b94e5c6c2564342ab984bb116b54be3.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>还可以用来生成特定风格的图片：<br>比如JOJO风（？）<br><img src="https://img-blog.csdnimg.cn/00f3b7d9c3674601b8c560b7dfe26cb4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>或者人脸正脸化<br><img src="https://img-blog.csdnimg.cn/ed2cada49a00433aaa363adcd803bce9.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="二、风格迁移"><a href="#二、风格迁移" class="headerlink" title="二、风格迁移"></a>二、风格迁移</h2><ul>
+<li><p>数据集之间的迁移<br><img src="https://img-blog.csdnimg.cn/e44419c5fa7549e79e0b231588227d60.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+</li>
+<li><p>人物动作的迁移</p>
+</li>
+<li>去雨算法</li>
+<li>漫画风格迁移</li>
+<li>字体风格迁移</li>
+<li><p>去模糊<br><img src="https://img-blog.csdnimg.cn/adcbb421eb4a4dff85e897e40b030be4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<p>等等</p>
+<h2 id="三、超分辨重建"><a href="#三、超分辨重建" class="headerlink" title="三、超分辨重建"></a>三、超分辨重建</h2><p>超分辨重建的意思是在放大图像时用于恢复图像中细节内容的技术<br>人物小脸的检测</p>
+</li>
+</ul>
+<p><img src="https://img-blog.csdnimg.cn/a6cbd7227a7c4af1bf7651da3d9d1d5d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>以上内容来自于阿里云笔记：<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.20222498.J_3678908510.2.fa0f2a1fSRULEg&amp;postId=195622">https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.20222498.J_3678908510.2.fa0f2a1fSRULEg&amp;postId=195622</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lizh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/10/GAN(%E4%BA%8C)/">http://example.com/2022/01/10/GAN(%E4%BA%8C)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Neural-Network/">Neural Network</a></div><div class="post_share"><div class="social-share" data-image="https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/11/Batch%20Norm/"><img class="prev-cover" src="https://img-blog.csdnimg.cn/e9f22867b0dc40eaac0e6dcf4170f1c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_19,color_FFFFFF,t_70,g_se,x_16" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Training Trick:Batch Norm</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/10/GAN%201.1/"><img class="next-cover" src="https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">GAN(一)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/10/GAN%201.1/" title="GAN(一)"><img class="cover" src="https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-10</div><div class="title">GAN(一)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lizh</div><div class="author-info__description">Lizh的博客，一名计算机视觉方向的小小本科生</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://bayern4ever-dot.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">Welcome to Lizh's blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%B0%E6%8D%AE%E7%94%9F%E6%88%90"><span class="toc-number">1.</span> <span class="toc-text">一、数据生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E9%A3%8E%E6%A0%BC%E8%BF%81%E7%A7%BB"><span class="toc-number">2.</span> <span class="toc-text">二、风格迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E8%B6%85%E5%88%86%E8%BE%A8%E9%87%8D%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">三、超分辨重建</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.23）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读">寒假科研打卡（1.23）-语音识别论文研读</a><time datetime="2022-01-23T14:00:16.857Z" title="Created 2022-01-23 22:00:16">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.18）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读">寒假科研打卡（1.18）-语音识别论文研读</a><time datetime="2022-01-18T07:34:02.892Z" title="Created 2022-01-18 15:34:02">2022-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.17）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读">寒假科研打卡（1.17）-语音识别论文研读</a><time datetime="2022-01-17T14:14:20.400Z" title="Created 2022-01-17 22:14:20">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.16）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读">寒假科研打卡（1.16）-语音识别论文研读</a><time datetime="2022-01-16T23:01:24.602Z" title="Created 2022-01-17 07:01:24">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm"><img src="https://img-blog.csdnimg.cn/e9f22867b0dc40eaac0e6dcf4170f1c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_19,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Training Trick:Batch Norm"/></a><div class="content"><a class="title" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm">Training Trick:Batch Norm</a><time datetime="2022-01-11T07:57:10.549Z" title="Created 2022-01-11 15:57:10">2022-01-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Lizh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":null,"use":"live2d-widget-model-tororo#模型选择","display":null,"position":"right","width":150,"height":300,"mobile":null,"show":true,"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

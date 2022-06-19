@@ -1,0 +1,242 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>寒假科研打卡（1.16）-语音识别论文研读 | Lizh Blog</title><meta name="keywords" content="Synthetic Speech Detection"><meta name="author" content="Lizh"><meta name="copyright" content="Lizh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="今天根据导师的任务来阅读语音识别方面的一篇论文，作者是York University的Ricardo Reimao，这是他的硕士毕业论文。计划今明后三天读完。论文链接如下：https:&#x2F;&#x2F;yorkspace.library.yorku.ca&#x2F;xmlui&#x2F;bitstream&#x2F;handle&#x2F;10315&#x2F;36698&#x2F;Reimao_Ricardo_AM_2019_Masters.pdf?sequence&#x3D;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="寒假科研打卡（1.16）-语音识别论文研读">
+<meta property="og:url" content="http://example.com/2022/01/17/Synthetic%20Speech(1)/index.html">
+<meta property="og:site_name" content="Lizh Blog">
+<meta property="og:description" content="今天根据导师的任务来阅读语音识别方面的一篇论文，作者是York University的Ricardo Reimao，这是他的硕士毕业论文。计划今明后三天读完。论文链接如下：https:&#x2F;&#x2F;yorkspace.library.yorku.ca&#x2F;xmlui&#x2F;bitstream&#x2F;handle&#x2F;10315&#x2F;36698&#x2F;Reimao_Ricardo_AM_2019_Masters.pdf?sequence&#x3D;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&risl=&pid=ImgRaw&r=0">
+<meta property="article:published_time" content="2022-01-16T23:01:24.602Z">
+<meta property="article:modified_time" content="2022-01-16T23:09:08.314Z">
+<meta property="article:author" content="Lizh">
+<meta property="article:tag" content="Synthetic Speech Detection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&risl=&pid=ImgRaw&r=0"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/17/Synthetic%20Speech(1)/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '寒假科研打卡（1.16）-语音识别论文研读',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-17 07:09:08'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/source/css/background.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lizh Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">寒假科研打卡（1.16）-语音识别论文研读</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-16T23:01:24.602Z" title="Created 2022-01-17 07:01:24">2022-01-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-16T23:09:08.314Z" title="Updated 2022-01-17 07:09:08">2022-01-17</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>5min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="寒假科研打卡（1.16）-语音识别论文研读"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>今天根据导师的任务来阅读语音识别方面的一篇论文，作者是York University的Ricardo Reimao，这是他的硕士毕业论文。计划今明后三天读完。<br>论文链接如下：<a target="_blank" rel="noopener" href="https://yorkspace.library.yorku.ca/xmlui/bitstream/handle/10315/36698/Reimao_Ricardo_AM_2019_Masters.pdf?sequence=2&amp;isAllowed=y">https://yorkspace.library.yorku.ca/xmlui/bitstream/handle/10315/36698/Reimao_Ricardo_AM_2019_Masters.pdf?sequence=2&amp;isAllowed=y</a></p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1 Introduction"></a>1 Introduction</h2><h3 id="1-1-合成语音识别综述"><a href="#1-1-合成语音识别综述" class="headerlink" title="1.1 合成语音识别综述"></a>1.1 合成语音识别综述</h3><p>现如今，随着深度学习和其他科技的提升，一些人类难以直接辨别的声音能够被合成。而且，这些生成器能够生成特定的声音，比如奥巴马、林志玲的声音。这样的技术，一旦不被正确利用，就有可能导致经济或政治等各方面的影响。在视频中，他可能会说他实际并未说过的话。因此，研究合成语音识别很有必要。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1it411C7Vo?share_source=copy_web">https://www.bilibili.com/video/BV1it411C7Vo?share_source=copy_web</a><br>1.1.1 合成语音生成系统<br>传统合成语音的方法有隐马尔科夫模型（HMMs）和高斯混合模型（GMM），可以学习语音特征并模仿它们。虽然这些模型能够产生清晰而可理解的语音，但这些语音缺少自然度（naturalness）近期的研究尝试用深度神经网络（DNN），可以从大量的语音数据中学习一个模型，用来生成更加自然的语音，甚至可以说出那些数据中不包括的词汇。因此，DNN被广泛用于Text-To-Speech（TTS），语音生成中。<br>1.1.2 合成语音检测系统<br>为了识别恶意语音合成，合成语音检测系统非常重要。因此，研究者们发起了名为Automatic Speech Verification Spoof（ASVSpoof）自动语音验证的竞赛。他们提供了一个数据集，里面有人的语音，也有电脑合成的虚假语音。参赛者大部分使用的是HMM和GMM模型来提取频率的特征。<br>但是现在又两个问题：</p>
+<ul>
+<li><strong>数据集</strong> 官网提供的数据集并没有包含用最新的、先进的方法合成的语音，数据集质量不敢保证。</li>
+<li><p><strong>模型</strong> 很多参赛者仍使用的是传统的HMM和GMM模型，难以取得高准确度<br>为解决上述问题，作者首先构造了自己的数据库（Fake or Real Dataset），并在此基础上，采用了深度学习的方式来实现合成语音检测。</p>
+<h3 id="1-2-The-Fake-or-Real-Dataset"><a href="#1-2-The-Fake-or-Real-Dataset" class="headerlink" title="1.2 The Fake or Real Dataset"></a>1.2 The Fake or Real Dataset</h3><p>这是作者自己构造的数据库，里面包含了超过111000份真实语音以及用最新方法生成的84000分合成语音。<br>1.2.1 <strong>合成语音数据库</strong><br>首先是语音合成系统，挑选了几个比较火的开源系统：</p>
+</li>
+<li><p>Deep Voice</p>
+</li>
+<li>Baidu TTS</li>
+<li>Microsoft Azure TTS</li>
+<li><p>Google Cloud TTS with Wavenet<br>等等<br>语音合成系统确定后，要确定TTS系统的输入，即短语或语句。本文中，作者提供的是英文短语，大约有152000个，然后作者将这些短语随机划分为40个短语包，分配给TTS系统<br>最后，就可以生成语音啦<br>1.2.2 <strong>真实语音数据</strong><br>真实语音数据集需要满足以下条件：</p>
+</li>
+<li><p>说话人的性别不能有差别</p>
+</li>
+<li>说话人的口音不能有太大差别</li>
+<li>说话人的年龄也不能有太大差别<br>这样，才能保证学习的模型不轻易过拟合，没有学习到合成语音与真实语音真正的差别<br>作者从youtube和TED Talks上采集了一些视频，将其分割成了一个个最长10s的语音。<br>到此，原始数据就收集完毕啦！接下来是对音频数据的<strong>预处理</strong>，以使其能用于机器学习算法。<br>1.2.3 音频规范化处理</li>
+<li><strong>文件类型规范化</strong> 将所有文件都转换成了WAV格式</li>
+<li><strong>文件大小规范化</strong> 所有音频文件的大小不能成为分类地因素之一</li>
+<li><strong>采样率规范化</strong> 降低采样率有利于减少训练时间</li>
+<li><strong>通道混合</strong> 生成语音的通道数通常为1，而真实语音的通道数为2.因此将真实语音的通道数进行混合，按照各自0.5的比例进行混合</li>
+<li><strong>静默去除</strong> 我们发现合成语音里开头0.5s和结尾0.5s是没有声音的，而真实语音的静默是随机的。因此我们去掉了所有的silence。</li>
+<li><strong>性别平衡</strong></li>
+<li><strong>类别平衡</strong> 真实语音和生成语音的数据集数量一样多</li>
+<li><p><strong>长度规范化</strong> 通过之前的实验，人们发现合成语音会比真实语音更短。因此我们将所有超过2s的数据截断，所有不足2s的数据抛弃掉。最终产生一个名为for-2seconds的数据集<br>1.2.4 语音再录制<br>为了模拟现实生活中的场景，我们用另外一个非专业的设备录制了数据集里的语音，这能够平滑掉合成语音里的高频片段，并且引入了室内混响，能够使语音更加真实。这里产生的数据集叫做for-rerecorded<br>1.2.5 数据集划分<br>作者将数据集划分成了训练集（77.73%）、验证集（15.58%）和测试集（6.68%）。</p>
+</li>
+<li><p>训练集：用于训练模型</p>
+</li>
+<li>验证集：用于验证模型的准确度</li>
+<li><p>测试集：用于检测模型对于未出现的语音的识别度</p>
+<h3 id="1-3-合成语音检测分类器"><a href="#1-3-合成语音检测分类器" class="headerlink" title="1.3 合成语音检测分类器"></a>1.3 合成语音检测分类器</h3><p>以往的研究很少用最新的技术产生的语音来测试自己的分类器。本文中，我们尝试了五种不同的特征提取办法：快速傅里叶变换、短时傅里叶变换、梅尔频率倒谱系数、恒Q变换。然后针对这些提取的特征，我们用了4中机器学习方法和9种神经网络架构来分析。总共尝试了65中组合来分析特征。<br>1.3.1 基于机器学习的频率分析<br>频率分析方法重点在于分析频率模式而不考虑时序特征。比如，使用平均短时傅里叶变换，我们就可以快速获取在每个频率范围内的振幅，能够在简单分类任务中起到效果。如果我们想判断这段音频是男人还是女人说的，就可以发现男人声音高振福时频率较低，而女人则倾向于高振福高频率。<br>用上文5中方法提取到的频率特征后，我们用4中经典机器学习方法来与神经网络进行对比，包括：朴素贝叶斯、支持向量机、决策树和随机森林。<br>1.3.2 深度神经网络<br>尽管通过频率分析能够得到比较好的分类结果，我们抛弃了音频中的时序特征。之前的研究表明，在合成语音中，频率随时间的方差会更大一些。因此我们需要一个方法，能够同时提取到频率特征和时序特征。深度神经网络能够从声谱图中提取到上述特征。本文中，我们采用了一下几种神经网络架构：</p>
+</li>
+<li><p>4层全连接网络</p>
+</li>
+<li>2层卷积网络</li>
+<li>3层卷积网络</li>
+<li>VGG16和VGG19</li>
+<li>InceptinoV3</li>
+<li>残差网络</li>
+<li>MobileNet</li>
+<li>XceptionNet</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lizh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/17/Synthetic%20Speech(1)/">http://example.com/2022/01/17/Synthetic%20Speech(1)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Synthetic-Speech-Detection/">Synthetic Speech Detection</a></div><div class="post_share"><div class="social-share" data-image="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/17/Synthetic%20Speech(2)/"><img class="prev-cover" src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">寒假科研打卡（1.17）-语音识别论文研读</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/11/Batch%20Norm/"><img class="next-cover" src="https://img-blog.csdnimg.cn/e9f22867b0dc40eaac0e6dcf4170f1c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_19,color_FFFFFF,t_70,g_se,x_16" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Training Trick:Batch Norm</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-17</div><div class="title">寒假科研打卡（1.17）-语音识别论文研读</div></div></a></div><div><a href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-18</div><div class="title">寒假科研打卡（1.18）-语音识别论文研读</div></div></a></div><div><a href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读"><img class="cover" src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&risl=&pid=ImgRaw&r=0" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-23</div><div class="title">寒假科研打卡（1.23）-语音识别论文研读</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lizh</div><div class="author-info__description">Lizh的博客，一名计算机视觉方向的小小本科生</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://bayern4ever-dot.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">Welcome to Lizh's blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Introduction"><span class="toc-number">1.</span> <span class="toc-text">1 Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%90%88%E6%88%90%E8%AF%AD%E9%9F%B3%E8%AF%86%E5%88%AB%E7%BB%BC%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 合成语音识别综述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-The-Fake-or-Real-Dataset"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 The Fake or Real Dataset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%90%88%E6%88%90%E8%AF%AD%E9%9F%B3%E6%A3%80%E6%B5%8B%E5%88%86%E7%B1%BB%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 合成语音检测分类器</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.23）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读">寒假科研打卡（1.23）-语音识别论文研读</a><time datetime="2022-01-23T14:00:16.857Z" title="Created 2022-01-23 22:00:16">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.18）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读">寒假科研打卡（1.18）-语音识别论文研读</a><time datetime="2022-01-18T07:34:02.892Z" title="Created 2022-01-18 15:34:02">2022-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.17）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读">寒假科研打卡（1.17）-语音识别论文研读</a><time datetime="2022-01-17T14:14:20.400Z" title="Created 2022-01-17 22:14:20">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.16）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读">寒假科研打卡（1.16）-语音识别论文研读</a><time datetime="2022-01-16T23:01:24.602Z" title="Created 2022-01-17 07:01:24">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm"><img src="https://img-blog.csdnimg.cn/e9f22867b0dc40eaac0e6dcf4170f1c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_19,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Training Trick:Batch Norm"/></a><div class="content"><a class="title" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm">Training Trick:Batch Norm</a><time datetime="2022-01-11T07:57:10.549Z" title="Created 2022-01-11 15:57:10">2022-01-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Lizh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":null,"use":"live2d-widget-model-tororo#模型选择","display":null,"position":"right","width":150,"height":300,"mobile":null,"show":true,"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>

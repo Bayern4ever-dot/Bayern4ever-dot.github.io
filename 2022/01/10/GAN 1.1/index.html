@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GAN(一) | Lizh Blog</title><meta name="keywords" content="Neural Network"><meta name="author" content="Lizh"><meta name="copyright" content="Lizh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一、为什么需要GAN首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。 二、GAN思想GAN是基于演化思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。Generator:生成器输入向量，输出向量均服从特定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAN(一)">
+<meta property="og:url" content="http://example.com/2022/01/10/GAN%201.1/index.html">
+<meta property="og:site_name" content="Lizh Blog">
+<meta property="og:description" content="一、为什么需要GAN首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。 二、GAN思想GAN是基于演化思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。Generator:生成器输入向量，输出向量均服从特定">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b">
+<meta property="article:published_time" content="2022-01-10T03:38:54.138Z">
+<meta property="article:modified_time" content="2022-01-10T07:22:35.602Z">
+<meta property="article:author" content="Lizh">
+<meta property="article:tag" content="Neural Network">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2022/01/10/GAN%201.1/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GAN(一)',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-01-10 15:22:35'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/source/css/background.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div></div><hr/></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Lizh Blog</a></span><div id="menus"><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GAN(一)</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-01-10T03:38:54.138Z" title="Created 2022-01-10 11:38:54">2022-01-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-01-10T07:22:35.602Z" title="Updated 2022-01-10 15:22:35">2022-01-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">944</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GAN(一)"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、为什么需要GAN"><a href="#一、为什么需要GAN" class="headerlink" title="一、为什么需要GAN"></a>一、为什么需要GAN</h2><p>首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。<br>比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。<br><img src="https://img-blog.csdnimg.cn/3c09dfb75c434fe081a51b788d1b6564.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="二、GAN思想"><a href="#二、GAN思想" class="headerlink" title="二、GAN思想"></a>二、GAN思想</h2><p>GAN是基于<strong>演化</strong>思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。<br><strong>Generator</strong>:生成器<br><img src="https://img-blog.csdnimg.cn/a1c54fcd2f15492d99ced0e37404227e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>输入向量，输出向量均服从特定分布。</p>
+<p>一般分布有混合高斯模型、朴素贝叶斯模型、隐马尔科夫链模型和马尔科夫随机场模型。</p>
+<p><strong>Discriminator（辨别器）</strong>：输入图片（实际为向量），输出数字，代表图片与实际图片的相似度，或者真实度，真实度越高，数值越大。</p>
+<p>常见的判别式模型有回归、SVM、CRF等</p>
+<p> <strong>- 判别式模型与生成式模型对比</strong><br> 判别式：分类边界灵活，学习简单，性能好；缺点是无法得到概率分布<br> 生成式：收敛速度快，可以学习分布；缺点是学习复杂，分类性能差</p>
+<p>演化就是Generator与Discriminator做对抗，一个生成图片，一个判别与真实图片的差别，共同迭代进化。<br><img src="https://img-blog.csdnimg.cn/9e7b6ee3f28443e2a18be74b1f9bb657.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="三、GAN算法"><a href="#三、GAN算法" class="headerlink" title="三、GAN算法"></a>三、GAN算法</h2><ul>
+<li>Step1:初始化神经网络参数（随机）</li>
+<li>Step2:固定generator，更新discriminator参数<br><img src="https://img-blog.csdnimg.cn/ebf546c20f0d4e8386bbff6e38ee2b8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>训练的目标：分辨真正图片与生成图片之间的差异。能够分得越清楚越好。（可以看做分类器或者回归任务）<br><img src="https://img-blog.csdnimg.cn/d0d3d9955c44411db1907a6bc9182870.png#pic_center" alt="在这里插入图片描述"></li>
+<li>Step3:固定discriminator，训练generator，来达到以假乱真的目的<br><img src="https://img-blog.csdnimg.cn/ea3e21d753c947dcb8f36588a6faf18b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br> 希望通过训练，使得generator产生的图片，在discriminator的得分尽量。此时，我们可以将generator和discriminator拼做同一个大的神经网络，输入是向量，输出是数值，而且hidden layer里面有一层非常长，对应generator产生的图片向量。</li>
+<li>Step4:反复训练，迭代</li>
+</ul>
+<h2 id="四、GAN理论"><a href="#四、GAN理论" class="headerlink" title="四、GAN理论"></a>四、GAN理论</h2><p>训练目标：generator产生的数据的分布，与discriminator的分布越接近越好<br><img src="https://img-blog.csdnimg.cn/fa8b782a261e4d0eb2a8a23ddfe7f61a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>问题来了，如何衡量这个相似度，或者差异性？<br><img src="https://img-blog.csdnimg.cn/c4060a1c33af48f29eea8705e4cc020b.png#pic_center" alt="在这里插入图片描述"><br>我们可以用JS散度来衡量相似度，定义如下：<br><img src="https://img-blog.csdnimg.cn/2e3213c286a648afbd5db54cb64f7159.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>相当于，我们现在数据集中随机抽样，获得Pdata；再从正态分布中抽样，通过generator得到Pg。这样可以不用知道整个数据集的实际分布。而JS散度的意思是，是时discriminator能够将真实数据分成1类，生成数据分成0类。<br>其实，我们还可以定义其他散度来度量相似度：<br><img src="https://img-blog.csdnimg.cn/fb82316c4c96409581220b7225297814.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="五、GAN特点："><a href="#五、GAN特点：" class="headerlink" title="五、GAN特点："></a>五、GAN特点：</h2><p>（一）不好训练<br>JS Divergence的特点;<br>Pg与Pdata如果没有重叠部分，JS divergence计算出来永远是log2。也就是说，我们看不到整个GAN的改进过程，也很容易在二分类器上达到100%的准确率。<br><img src="https://img-blog.csdnimg.cn/3cd50cb650304c729497b141bca217d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br><strong>改进：</strong> WGAN<br>定义divergence为<br><img src="https://img-blog.csdnimg.cn/aa33e95a0d61457eafef53ecc5ec08ed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>相当于推土机，从一个分布变成另外一个分布，如何能最短的路径？<br><img src="https://img-blog.csdnimg.cn/dfa836eade394afba3e1df1e3fe9ddae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"><br>Wasserstein distance就是找到的最短路径，一步一步迭代，而不是直接找到最值。<br><img src="https://img-blog.csdnimg.cn/8565b17752ee4bf7aef0c5a467fafc84.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" alt="在这里插入图片描述"></p>
+<ul>
+<li><strong>纳什均衡问题</strong><br>GAN的优化需要判别器与生成器达到纳什均衡，但判别器和生成器是单独训练的，因此不一定能达到纳什均衡。而且如果判别器学得不好，生成器也无法稳定学习；生成器学得不好，判别器就不能得到正确的学习。</li>
+</ul>
+<p>以上笔记来自于《李宏毅2021机器学习》与阿里云GAN笔记，视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wv411h7kN?p=41&amp;share_source=copy_web">https://www.bilibili.com/video/BV1Wv411h7kN?p=41&amp;share_source=copy_web</a></p>
+<p>笔记链接：<a target="_blank" rel="noopener" href="https://tianchi.aliyun.com/notebook-ai/detail?spm=5176.20222498.J_3678908510.2.fa0f2a1fSRULEg&amp;postId=195622">GAN_理论部分_V1-天池实验室-实时在线的数据分析协作工具，享受免费计算资源 (aliyun.com)</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Lizh</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://example.com/2022/01/10/GAN%201.1/">http://example.com/2022/01/10/GAN%201.1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Neural-Network/">Neural Network</a></div><div class="post_share"><div class="social-share" data-image="https://pic2.zhimg.com/v2-2f5fe274f8825e3ee60be35eacf22a0c_1440w.jpg?source=172ae18b" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2022/01/10/GAN(%E4%BA%8C)/"><img class="prev-cover" src="https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">GAN(二)</div></div></a></div><div class="next-post pull-right"><a href="/2022/01/05/MCM&amp;ICM%20Writing%20Skills/"><img class="next-cover" src="https://www.comap.com/undergraduate/contests/images/comaplogo.gif" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">MCM&amp;ICM Writing Skills</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2022/01/10/GAN(%E4%BA%8C)/" title="GAN(二)"><img class="cover" src="https://img-blog.csdnimg.cn/042c4f3d2de84113ab1448335ab337a9.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-01-10</div><div class="title">GAN(二)</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://img-blog.csdnimg.cn/9dbe9c23e3634d6c81ec88cfb08e6ae7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_20,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Lizh</div><div class="author-info__description">Lizh的博客，一名计算机视觉方向的小小本科生</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">9</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://bayern4ever-dot.github.io"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">Welcome to Lizh's blog!</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81GAN"><span class="toc-number">1.</span> <span class="toc-text">一、为什么需要GAN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81GAN%E6%80%9D%E6%83%B3"><span class="toc-number">2.</span> <span class="toc-text">二、GAN思想</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81GAN%E7%AE%97%E6%B3%95"><span class="toc-number">3.</span> <span class="toc-text">三、GAN算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81GAN%E7%90%86%E8%AE%BA"><span class="toc-number">4.</span> <span class="toc-text">四、GAN理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81GAN%E7%89%B9%E7%82%B9%EF%BC%9A"><span class="toc-number">5.</span> <span class="toc-text">五、GAN特点：</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.23）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/23/Synthetic%20Speech(4)/" title="寒假科研打卡（1.23）-语音识别论文研读">寒假科研打卡（1.23）-语音识别论文研读</a><time datetime="2022-01-23T14:00:16.857Z" title="Created 2022-01-23 22:00:16">2022-01-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.18）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/18/Synthetic%20Speech(3)/" title="寒假科研打卡（1.18）-语音识别论文研读">寒假科研打卡（1.18）-语音识别论文研读</a><time datetime="2022-01-18T07:34:02.892Z" title="Created 2022-01-18 15:34:02">2022-01-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.17）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(2)/" title="寒假科研打卡（1.17）-语音识别论文研读">寒假科研打卡（1.17）-语音识别论文研读</a><time datetime="2022-01-17T14:14:20.400Z" title="Created 2022-01-17 22:14:20">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读"><img src="https://tse1-mm.cn.bing.net/th/id/R-C.52bf82ee14c39ae83f9c5e9265dc024c?rik=d6V5gEoPYxm1vQ&amp;riu=http%3a%2f%2fseopic.699pic.com%2fphoto%2f50076%2f9023.jpg_wh1200.jpg&amp;ehk=oAf5XoSY36KI4npdKrtjt6a%2fE7a47%2fL4LSie4qT0bTI%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="寒假科研打卡（1.16）-语音识别论文研读"/></a><div class="content"><a class="title" href="/2022/01/17/Synthetic%20Speech(1)/" title="寒假科研打卡（1.16）-语音识别论文研读">寒假科研打卡（1.16）-语音识别论文研读</a><time datetime="2022-01-16T23:01:24.602Z" title="Created 2022-01-17 07:01:24">2022-01-17</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm"><img src="https://img-blog.csdnimg.cn/e9f22867b0dc40eaac0e6dcf4170f1c7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_19,color_FFFFFF,t_70,g_se,x_16" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Training Trick:Batch Norm"/></a><div class="content"><a class="title" href="/2022/01/11/Batch%20Norm/" title="Training Trick:Batch Norm">Training Trick:Batch Norm</a><time datetime="2022-01-11T07:57:10.549Z" title="Created 2022-01-11 15:57:10">2022-01-11</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Lizh</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', { class: 'katex-wrap'})
+  })
+})()</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":null,"use":"live2d-widget-model-tororo#模型选择","display":null,"position":"right","width":150,"height":300,"mobile":null,"show":true,"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body></html>
