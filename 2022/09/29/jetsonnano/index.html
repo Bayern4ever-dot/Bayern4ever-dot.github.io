@@ -13,35 +13,29 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Lizh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="lizihao19@nudt.edu.cn                     个人信息    男，2001 年，河北石家庄，中共预备党员（考察期快满了） 单身，未婚   教育经历 学士，四方坪职业学院，大数据工程专业，2019.09~2023.07 CET4，CET6  研究兴趣 计算机视觉（尤其安全领">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+    <meta name="description" content="最近刚开学嘛，比较闲，刚好导师有个项目可能需要在终端上部署深度学习算法，就想着自己也搞个玩玩呢。看了网上好多文章之后，也综合对比了一下树莓派和Jetson Nano，最后决定入一个Jetson Nano，毕竟也是用CUDA编程，和导师的项目更加贴近嘛。但是不得不吐槽，板子最近的价格真的贵。。供不应求嘛毕竟。首先，我购买的是摄像头进阶套餐，包含：Jetson Nano B01国产开发套件USB数据线">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetson Nano使用笔记">
+<meta property="og:url" content="http://example.com/2022/09/29/jetsonnano/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="lizihao19@nudt.edu.cn                     个人信息    男，2001 年，河北石家庄，中共预备党员（考察期快满了） 单身，未婚   教育经历 学士，四方坪职业学院，大数据工程专业，2019.09~2023.07 CET4，CET6  研究兴趣 计算机视觉（尤其安全领">
+<meta property="og:description" content="最近刚开学嘛，比较闲，刚好导师有个项目可能需要在终端上部署深度学习算法，就想着自己也搞个玩玩呢。看了网上好多文章之后，也综合对比了一下树莓派和Jetson Nano，最后决定入一个Jetson Nano，毕竟也是用CUDA编程，和导师的项目更加贴近嘛。但是不得不吐槽，板子最近的价格真的贵。。供不应求嘛毕竟。首先，我购买的是摄像头进阶套餐，包含：Jetson Nano B01国产开发套件USB数据线">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/about/assets/envelope-solid.svg">
-<meta property="og:image" content="http://example.com/about/assets/info-circle-solid.svg">
-<meta property="og:image" content="http://example.com/about/assets/graduation-cap-solid.svg">
-<meta property="og:image" content="http://example.com/about/assets/2.jpg">
-<meta property="og:image" content="http://example.com/about/assets/project-diagram-solid.svg">
-<meta property="og:image" content="http://example.com/about/assets/tools-solid.svg">
-<meta property="og:image" content="http://example.com/about/assets/9.png">
-<meta property="og:image" content="http://example.com/about/assets/honor.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5b1ae0723a264d2a96d02deed76fed9c.png">
 <meta property="article:published_time" content="2022-09-29T00:04:45.000Z">
-<meta property="article:modified_time" content="2022-09-29T04:39:33.387Z">
+<meta property="article:modified_time" content="2022-09-29T04:57:59.935Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Jetson nano">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/about/assets/envelope-solid.svg">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/5b1ae0723a264d2a96d02deed76fed9c.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>关于 - Hexo</title>
+  <title>Jetson Nano使用笔记 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -101,7 +95,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 60vh;">
+<div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -206,9 +200,57 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="关于"></span>
+            <span id="subtitle" data-typed-text="Jetson Nano使用笔记"></span>
           
         </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-09-29 08:04" pubdate>
+          2022年9月29日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
 
         
       </div>
@@ -224,111 +266,139 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/head.jpg" srcset="/img/loading.gif" lazyload class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">李子豪</div>
-    <div class="about-intro">计算机视觉方向大四本科生</div>
-    <div class="about-icons">
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
       
-        
-        
-        
-        <a href=https://github.com/Bayern4ever-dot class="
-           hint--bottom hint--rounded"
-           aria-label=Github
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jetson Nano使用笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>最近刚开学嘛，比较闲，刚好导师有个项目可能需要在终端上部署深度学习算法，就想着自己也搞个玩玩呢。看了网上好多文章之后，也综合对比了一下树莓派和Jetson Nano，最后决定入一个Jetson Nano，毕竟也是用CUDA编程，和导师的项目更加贴近嘛。但是不得不吐槽，板子最近的价格真的贵。。供不应求嘛毕竟。<br>首先，我购买的是摄像头进阶套餐，包含：<br>Jetson Nano B01国产开发套件<br>USB数据线<br>USB无线网卡<br>32GB内存卡<br>读卡器<br>亚克力外壳带风扇<br>网线<br>HDMI高清线<br>电源适配器+电源线<br>IMX219摄像头<br>没有配显示屏，键盘和鼠标呢，这个我有自己的考虑。显示器的话，学校有大屏呢，还有键盘和鼠标，都有现成的，没必要再购买了。而且第一次开机之后，就可以用SSH进行远程连接到笔记本电脑上了，也不用配其他东西了。<br>下面是对Jetson Nano开箱进行理论准备咯：<br>1.1 认识Nano<br>（1）Nano主要接口<br><img src="https://img-blog.csdnimg.cn/5b1ae0723a264d2a96d02deed76fed9c.png" srcset="/img/loading.gif" lazyload alt="Jetson nano组件图"><br>1-SD卡插槽<br>2-40PIN扩展接头<br>3-USB接口，用于充电或者数据传输<br>4-网线接口<br>5-USB3.0接口<br>6-HDMI接口<br>7-DisplayPort输出端口<br>8-5V电源输入<br>9-CSI摄像机接口<br>1.2 配件准备<br>SD卡与读卡器：建议大小在32G以上，系统烧完卡大概要占13G，还有后续各种框架以及存储深度学习模型文件，因此越大越好<br>USB电源：供电<br>网线：安装以及更新时都必须联网<br>笔记本电脑：烧写SD卡<br>IMX219摄像头：用于计算机视觉应用<br>风扇：在运行深度学习模型时，需要降温<br>1.3 SD卡烧写操作<br>在使用开发套件之前，要对SD卡进行操作，这要可以将Ubuntu操作系统，以及其他工程组件写到SD卡里，方便后面进行开发。其实Jetson Nano就相当于一个小型计算机。<br>那什么是“烧写”呢？烧写也可以说是烧录，就是一次性写入到SD卡里，跟刻录的意义是一样的，但刻录是对应光盘，刻到盘里，烧录是真的“烧”到芯片里。宏观上看不出芯片有什么变化，但是微观上对芯片的结构进行了改变，在上面存储了信息。<br>1.3.1 下载镜像<br>在官网上下载好镜像文件，解压到本地就可以咯<br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/dlc/jetson-nano-dev-kit-sd-card-image">https://developer.nvidia.com/embedded/dlc/jetson-nano-dev-kit-sd-card-image</a><br>1.3.2格式化SD卡<br>使用软件对SD卡进行格式化<br>1.3.3烧录SD卡<br>使用软件写入镜像，进行烧录，大概耗时30Min<br>烧录好之后就可以把SD卡插入到Nano的卡槽里啦</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
       
-        
-        
-        
-        <a href=https://space.bilibili.com/244446348 class="
-           hint--bottom hint--rounded"
-           aria-label=Bilibili
-           target="_blank"
-        >
-          <i class="iconfont icon-bilibili-fill" aria-hidden="true"></i>
-          
-        </a>
+        <a href="/tags/Jetson-nano/">#Jetson nano</a>
       
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jetson Nano使用笔记</div>
+      <div>http://example.com/2022/09/29/jetsonnano/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Lizh</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年9月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/09/29/%E3%80%90%E6%97%A0%E6%A0%87%E9%A2%98%E3%80%91/" title="MCM&amp;ICM Writing Skills">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MCM&amp;ICM Writing Skills</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/09/28/hello-world/" title="Hello World">
+                        <span class="hidden-mobile">Hello World</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
     </div>
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-     <center>
-     <div>
-         <span>
-             <img src="assets/envelope-solid.svg" srcset="/img/loading.gif" lazyload width="18px">
-             lizihao19@nudt.edu.cn
-         </span>
-     </div>
- </center>
- <img src="assets/info-circle-solid.svg" srcset="/img/loading.gif" lazyload width="30px"> 个人信息 
-
-<ul>
-<li>男，2001 年，河北石家庄，中共预备党员（考察期快满了）</li>
-<li>单身，未婚</li>
-</ul>
-<h2 id="教育经历"><a href="#教育经历" class="headerlink" title=" 教育经历"></a><img src="assets/graduation-cap-solid.svg" srcset="/img/loading.gif" lazyload width="30px"> 教育经历</h2><ul>
-<li>学士，四方坪职业学院，大数据工程专业，2019.09~2023.07</li>
-<li>CET4，CET6</li>
-</ul>
-<h2 id="研究兴趣"><a href="#研究兴趣" class="headerlink" title="研究兴趣"></a><img src="assets/2.jpg" srcset="/img/loading.gif" lazyload width="35px">研究兴趣</h2><ul>
-<li>计算机视觉（尤其安全领域）</li>
-<li>大数据智能</li>
-<li>多模态数据分析与处理</li>
-<li>基于相似度匹配与智能博弈的人生伴侣寻找方法</li>
-</ul>
-<h2 id="个人项目"><a href="#个人项目" class="headerlink" title="个人项目"></a><img src="assets/project-diagram-solid.svg" srcset="/img/loading.gif" lazyload width="35px">个人项目</h2><ul>
-<li><p><strong>项目一</strong>：基于深度强化学习的虚拟XX模型自主策略.省级，组员，2020-2022</p>
-</li>
-<li><p><strong>项目二</strong>：多机器人协同气体化学战剂寻源研究.省级，组员，2021-2022</p>
-</li>
-<li><p><strong>项目三</strong>：基于发生模式细粒度理解的城市应急群智响应.省级，组长，2022-2023</p>
-</li>
-</ul>
-<h2 id="职场技能"><a href="#职场技能" class="headerlink" title=" 职场技能"></a><img src="assets/tools-solid.svg" srcset="/img/loading.gif" lazyload width="30px"> 职场技能</h2><ul>
-<li><p>精通<br>Python编程语言，Latex,Tabluea等软件操作</p>
-</li>
-<li><p>熟悉<br>Microsoft Office软件，数据分析与处理，数据可视化，数学建模</p>
-</li>
-<li><p>了解<br>深度学习相关知识</p>
-</li>
-</ul>
-<h2 id="获奖情况"><a href="#获奖情况" class="headerlink" title=" 获奖情况"></a><img src="assets/9.png" srcset="/img/loading.gif" lazyload width="30px"> 获奖情况</h2><ul>
-<li>2020年国际大学生数学建模竞赛F奖</li>
-<li>还有别的忘了</li>
-</ul>
-<h2 id="荣誉"><a href="#荣誉" class="headerlink" title=" 荣誉"></a><img src="assets/honor.png" srcset="/img/loading.gif" lazyload width="30px"> 荣誉</h2><ul>
-<li>2020，2021 学习标兵</li>
-<li>2020，2021 JJ</li>
-<li>2020 教学训练先进个人</li>
-<li>2021 SY优秀学员</li>
-</ul>
-
-  </div>
-
-  
-</article>
-
 
 
 
@@ -361,11 +431,8 @@
 
 
 
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     
 
     
@@ -482,6 +549,46 @@
   
 
 
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
 
 
   <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>

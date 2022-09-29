@@ -16,23 +16,39 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="一、为什么需要GAN首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。 二、GAN思想GAN是基于演化思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。Generator:生成器输入向量，输出向量均服从特定">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/09/28/hello-world/index.html">
+<meta property="og:title" content="GAN(一)">
+<meta property="og:url" content="http://example.com/2022/09/29/546/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="一、为什么需要GAN首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。 二、GAN思想GAN是基于演化思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。Generator:生成器输入向量，输出向量均服从特定">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-28T14:23:00.736Z">
-<meta property="article:modified_time" content="2022-09-28T13:59:08.037Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3c09dfb75c434fe081a51b788d1b6564.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/a1c54fcd2f15492d99ced0e37404227e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9e7b6ee3f28443e2a18be74b1f9bb657.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ebf546c20f0d4e8386bbff6e38ee2b8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d0d3d9955c44411db1907a6bc9182870.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/ea3e21d753c947dcb8f36588a6faf18b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fa8b782a261e4d0eb2a8a23ddfe7f61a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c4060a1c33af48f29eea8705e4cc020b.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2e3213c286a648afbd5db54cb64f7159.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fb82316c4c96409581220b7225297814.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3cd50cb650304c729497b141bca217d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/aa33e95a0d61457eafef53ecc5ec08ed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/dfa836eade394afba3e1df1e3fe9ddae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8565b17752ee4bf7aef0c5a467fafc84.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-09-29T04:25:39.448Z">
+<meta property="article:modified_time" content="2022-09-29T04:30:46.577Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="GAN">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/3c09dfb75c434fe081a51b788d1b6564.png#pic_center">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hello World - Hexo</title>
+  <title>GAN(一) - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="GAN(一)"></span>
           
         </div>
 
@@ -208,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-28 22:23" pubdate>
-          2022年9月28日 晚上
+        <time datetime="2022-09-29 12:25" pubdate>
+          2022年9月29日 中午
         </time>
       </span>
     
@@ -220,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          1.2k 字
         
       </span>
     
@@ -231,7 +247,7 @@
         
         
         
-          4 分钟
+          10 分钟
         
       </span>
     
@@ -277,24 +293,20 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">GAN(一)</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h2 id="一、为什么需要GAN"><a href="#一、为什么需要GAN" class="headerlink" title="一、为什么需要GAN"></a>一、为什么需要GAN</h2><p>首先明确，GAN仍是神经网络。而在现实中，我们相同的输入可能需要不同的输出（对应一个分布），这就需要GAN了。<br>比如，chatbox或者绘制动漫图像中，我们输入为红眼特征，输出的图像也不一样。<br><img src="https://img-blog.csdnimg.cn/3c09dfb75c434fe081a51b788d1b6564.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="二、GAN思想"><a href="#二、GAN思想" class="headerlink" title="二、GAN思想"></a>二、GAN思想</h2><p>GAN是基于<strong>演化</strong>思想提出的神经网络（或者进化）。在GAN网络中，进化的是Generator和Discriminator。<br><strong>Generator</strong>:生成器<br><img src="https://img-blog.csdnimg.cn/a1c54fcd2f15492d99ced0e37404227e.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>输入向量，输出向量均服从特定分布。<br><strong>Discriminator（辨别器）</strong>：输入图片（实际为向量），输出数字，代表图片与实际图片的相似度，或者真实度，真实度越高，数值越大。<br>演化就是Generator与Discriminator做对抗，一个生成图片，一个判别与真实图片的差别，共同迭代进化。<br><img src="https://img-blog.csdnimg.cn/9e7b6ee3f28443e2a18be74b1f9bb657.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></p>
+<h2 id="三、GAN算法"><a href="#三、GAN算法" class="headerlink" title="三、GAN算法"></a>三、GAN算法</h2><ul>
+<li>Step1:初始化神经网络参数（随机）</li>
+<li>Step2:固定generator，更新discriminator参数<br><img src="https://img-blog.csdnimg.cn/ebf546c20f0d4e8386bbff6e38ee2b8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_12,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>训练的目标：分辨真正图片与生成图片之间的差异。能够分得越清楚越好。（可以看做分类器或者回归任务）<br><img src="https://img-blog.csdnimg.cn/d0d3d9955c44411db1907a6bc9182870.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+<li>Step3:固定discriminator，训练generator，来达到以假乱真的目的<br><img src="https://img-blog.csdnimg.cn/ea3e21d753c947dcb8f36588a6faf18b.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>希望通过训练，使得generator产生的图片，在discriminator的得分尽量。此时，我们可以将generator和discriminator拼做同一个大的神经网络，输入是向量，输出是数值，而且hidden layer里面有一层非常长，对应generator产生的图片向量。</li>
+<li>Step4:反复训练，迭代<h2 id="四、GAN理论"><a href="#四、GAN理论" class="headerlink" title="四、GAN理论"></a>四、GAN理论</h2>训练目标：generator产生的数据的分布，与discriminator的分布越接近越好<br><img src="https://img-blog.csdnimg.cn/fa8b782a261e4d0eb2a8a23ddfe7f61a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>问题来了，如何衡量这个相似度，或者差异性？<br><img src="https://img-blog.csdnimg.cn/c4060a1c33af48f29eea8705e4cc020b.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>我们可以用JS散度来衡量相似度，定义如下：<br><img src="https://img-blog.csdnimg.cn/2e3213c286a648afbd5db54cb64f7159.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>相当于，我们现在数据集中随机抽样，获得Pdata；再从正态分布中抽样，通过generator得到Pg。这样可以不用知道整个数据集的实际分布。而JS散度的意思是，是时discriminator能够将真实数据分成1类，生成数据分成0类。<br>其实，我们还可以定义其他散度来度量相似度：<br><img src="https://img-blog.csdnimg.cn/fb82316c4c96409581220b7225297814.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><h2 id="五、GAN特点："><a href="#五、GAN特点：" class="headerlink" title="五、GAN特点："></a>五、GAN特点：</h2>（一）不好训练<br>JS Divergence的特点;<br>Pg与Pdata如果没有重叠部分，JS divergence计算出来永远是log2。也就是说，我们看不到整个GAN的改进过程，也很容易在二分类器上达到100%的准确率。<br><img src="https://img-blog.csdnimg.cn/3cd50cb650304c729497b141bca217d6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"></li>
+</ul>
+<p><strong>改进：</strong> WGAN<br>定义divergence为<br><img src="https://img-blog.csdnimg.cn/aa33e95a0d61457eafef53ecc5ec08ed.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>相当于推土机，从一个分布变成另外一个分布，如何能最短的路径？<br><img src="https://img-blog.csdnimg.cn/dfa836eade394afba3e1df1e3fe9ddae.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>Wasserstein distance就是找到的最短路径，一步一步迭代，而不是直接找到最值。<br><img src="https://img-blog.csdnimg.cn/8565b17752ee4bf7aef0c5a467fafc84.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_13,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>以上笔记均来自与《李宏毅2021机器学习》，视频链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Wv411h7kN?p=41&amp;share_source=copy_web">https://www.bilibili.com/video/BV1Wv411h7kN?p=41&amp;share_source=copy_web</a></p>
 
                 
               </div>
@@ -304,6 +316,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GAN/">#GAN</a>
+      
+    </div>
+  
 </div>
 
 
@@ -312,8 +331,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2022/09/28/hello-world/</div>
+      <div>GAN(一)</div>
+      <div>http://example.com/2022/09/29/546/</div>
     </div>
     <div class="license-meta">
       
@@ -325,7 +344,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月28日</div>
+          <div>2022年9月29日</div>
         </div>
       
       
@@ -357,15 +376,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/29/jetsonnano/" title="Jetson Nano使用笔记">
+                      <a href="/2022/09/29/%E3%80%90%E6%97%A0%E6%A0%87%E9%A2%98%E3%80%91%20(1)/" title="GAN(二)">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Jetson Nano使用笔记</span>
+                        <span class="hidden-mobile">GAN(二)</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/09/29/%E3%80%90%E6%97%A0%E6%A0%87%E9%A2%98%E3%80%91/" title="MCM&amp;ICM Writing Skills">
+                        <span class="hidden-mobile">MCM&amp;ICM Writing Skills</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

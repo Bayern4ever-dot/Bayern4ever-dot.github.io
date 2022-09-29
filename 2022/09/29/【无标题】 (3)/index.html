@@ -13,26 +13,38 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="John Doe">
+  <meta name="author" content="Lizh">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="今天是第二天啦，昨天写完笔记忘记上传了233今天就一起上传咯。继续阅读论文，今天是Background部分和Experiment部分。来吧！ 2 Background本章重点在于总结前人的工作 2.1 神经网络是一些对于神经网络发展的概述，在此不赘述 2.2 主要神经网络框架2.1.1 卷积神经网络卷积神经网络的核心在于卷积核，即一个滤波器（小框）在图像上不断扫描。卷积神经网络的重要论文之一是Al">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://example.com/2022/09/28/hello-world/index.html">
+<meta property="og:title" content="【论文精读】Speech Anti-spoofing">
+<meta property="og:url" content="http://example.com/2022/09/29/%E3%80%90%E6%97%A0%E6%A0%87%E9%A2%98%E3%80%91%20(3)/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="今天是第二天啦，昨天写完笔记忘记上传了233今天就一起上传咯。继续阅读论文，今天是Background部分和Experiment部分。来吧！ 2 Background本章重点在于总结前人的工作 2.1 神经网络是一些对于神经网络发展的概述，在此不赘述 2.2 主要神经网络框架2.1.1 卷积神经网络卷积神经网络的核心在于卷积核，即一个滤波器（小框）在图像上不断扫描。卷积神经网络的重要论文之一是Al">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-09-28T14:23:00.736Z">
-<meta property="article:modified_time" content="2022-09-28T13:59:08.037Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/47d494ef6bfb4560ad7d5825dd031254.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/89912768c8a2490094c26782ccf43977.png#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7661a2a7c51d4414bed6c31fc1a7aa74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/63212ad48dfb4782840944671921af05.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/34062d85681c4c05876a150ad2cbfe61.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/bdef96ed886a43db8039aaf1a238b080.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/8d9db3c029d44b9a9966ec45c03edd8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b19d0defdf4b44e897b49a4e7a24043f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/da55d7bf60ea49968c2a6b00954d01c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c8c37236ba964497857b4d400930727d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center">
+<meta property="article:published_time" content="2022-09-29T04:26:42.392Z">
+<meta property="article:modified_time" content="2022-09-29T04:38:10.578Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="PaperReading">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/47d494ef6bfb4560ad7d5825dd031254.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hello World - Hexo</title>
+  <title>【论文精读】Speech Anti-spoofing - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -197,7 +209,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hello World"></span>
+            <span id="subtitle" data-typed-text="【论文精读】Speech Anti-spoofing"></span>
           
         </div>
 
@@ -208,8 +220,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-09-28 22:23" pubdate>
-          2022年9月28日 晚上
+        <time datetime="2022-09-29 12:26" pubdate>
+          2022年9月29日 中午
         </time>
       </span>
     
@@ -220,7 +232,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          367 字
+          2.6k 字
         
       </span>
     
@@ -231,7 +243,7 @@
         
         
         
-          4 分钟
+          22 分钟
         
       </span>
     
@@ -277,24 +289,42 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Hello World</h1>
+            <h1 style="display: none">【论文精读】Speech Anti-spoofing</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <p>今天是第二天啦，昨天写完笔记忘记上传了233今天就一起上传咯。<br>继续阅读论文，今天是Background部分和Experiment部分。来吧！</p>
+<h2 id="2-Background"><a href="#2-Background" class="headerlink" title="2 Background"></a>2 Background</h2><p>本章重点在于总结前人的工作</p>
+<h3 id="2-1-神经网络"><a href="#2-1-神经网络" class="headerlink" title="2.1 神经网络"></a>2.1 神经网络</h3><p>是一些对于神经网络发展的概述，在此不赘述</p>
+<h3 id="2-2-主要神经网络框架"><a href="#2-2-主要神经网络框架" class="headerlink" title="2.2 主要神经网络框架"></a>2.2 主要神经网络框架</h3><p>2.1.1 卷积神经网络<br>卷积神经网络的核心在于卷积核，即一个滤波器（小框）在图像上不断扫描。卷积神经网络的重要论文之一是AlexNet,能够在ILSVRC竞赛上达到15.3%的错误率。但是，CNN的主要问题在于这个网络是如何学习的、如何预测的。为了探究，MIT的研究者们发明了一种方法，建立类别激活图像（CAM），来看看图像中的那一部分与最终的分类结果最为相关。<br>在前任工作的基础上， Matthew D. Zeiler and Rob Fergus等人发表了一篇论文，认为需要对实验方法和结果进行分析，才能更好地改进实验。他们使用了一种网络叫做反卷积网络，能够对卷积网络中的各层进行可视化，发现哪一个特征被提取了出来，帮助他们了解那一部分与问题相关。<br>2.2.2 Long-Short-Term-Memory Networks（长短期记忆网络）<br>卷积神经网络有两个问题：</p>
+<ol>
+<li>无法处理时序数列</li>
+<li>输入数据的格式大小必须固定</li>
+</ol>
+<p>LSTM网络是基于RNN（循环神经网络）搭建起来的，每一层的输出可以反过来成为该层的输入，这样能够使网络带有一定的记忆功能，也就可以处理序列数据了。<br>同时，有作者提出使用两个LSTM网络来解决输入长度限制的问题，一个LSTM网络将输入转化为特定长度的向量，另外一个网络则把这个向量解码转化为输出。<br>但是这也会带来一个问题，网络的性能随着输入长度的增加而下降。为了解决这个问题，研究这么提出了对齐机制。对齐机制与编码-解码器的最大区别就在于，后者注重将整个输出变为向量，而前者更注重与去寻找哪个输入部分对输出影响最大。作者根据这个思想提出了双向递归神经网络，未来输入对网络也会有影响，将正常顺序和混乱顺序的词语都当做输入进行训练，对网络的性能能够较好的提升（未来有可能的输入）<br>2.2.3 生成对抗网络（GANs）<br>在此不赘述</p>
+<h3 id="2-3-数字音频与机器学习"><a href="#2-3-数字音频与机器学习" class="headerlink" title="2.3 数字音频与机器学习"></a>2.3 数字音频与机器学习</h3><p>硬件的提升使神经网络有更复杂的模型，能处理多格式的数据，比如数字音频处理。<br>2.3.1 音频合成<br>2016年，Google的研究者们发表了一篇名为《Wavenet: A generative model for raw audio》<br>的论文，使用了CNN而不是RNN来合成语音（上文已经提过为什么不用CNN来处理音频）作者在CNN上使用了“dilated causal cnovolutional layers”（扩张的因果卷积层），<br>通过跳过输出的几步来扩大感受野，这样高层的输入就依赖于低层网络的输出。结果显示WaveNet的性能比RNN要好，而且与人的自然语言也更加契合。但是也有缺点：输出时间过长，需要90Min来生成1s的语音。DeepVoice3改进了这个网络，使其能够在更短时间内生成语音。<br>2.3.2 音频处理<br>2.3.3 Speech Processing</p>
+<h3 id="2-4-语音合成"><a href="#2-4-语音合成" class="headerlink" title="2.4 语音合成"></a>2.4 语音合成</h3><p>想要对合成语音进行检测，就要明白语音是怎么合成的<br>2.4.1 传统方法<br>语音合成有两种方式：</p>
+<ul>
+<li>硬件方面：声道复制</li>
+<li>软件方面：基于文本来合成语音或者将一种语音转化为另一种语音<br>可以通过语音拼接、调频参数或者生物发生力学来合成语音</li>
+</ul>
+<p> 通过以上分析，我们发现要生成一个好的合成语音检测器，需要：</p>
+<ul>
+<li>相当大的数据集</li>
+<li>数据质量要高，涵盖最新技术产生的语音</li>
+<li>人们对于合成语音的表现，反应<h2 id="3-DataSets"><a href="#3-DataSets" class="headerlink" title="3 DataSets"></a>3 DataSets</h2>在此不赘述作者使用的数据集<h2 id="4-Experiment"><a href="#4-Experiment" class="headerlink" title="4 Experiment"></a>4 Experiment</h2><h3 id="4-1-Tools"><a href="#4-1-Tools" class="headerlink" title="4.1 Tools"></a>4.1 Tools</h3>音频处理使用的是SoX工具，数据挖掘分析使用的是Weka工具，深度学习使用的是Tensorflow框架和Keras工具<h3 id="4-2-人类分辨合成语音"><a href="#4-2-人类分辨合成语音" class="headerlink" title="4.2 人类分辨合成语音"></a>4.2 人类分辨合成语音</h3>作者开展了一份调查，对人们能否分辨合成语音。结果显示，人们会错掉3个合成语音中的1个。但若果是高性能算法，人们有一半时间是错的。<br><img src="https://img-blog.csdnimg.cn/47d494ef6bfb4560ad7d5825dd031254.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><h3 id="4-3-合成语音检测"><a href="#4-3-合成语音检测" class="headerlink" title="4.3 合成语音检测"></a>4.3 合成语音检测</h3></li>
+</ul>
+<p>4.3.1 传统频率分析<br>首先要从每个音频中提取一个表示（比如STFT矩阵），平均这个特征得到一个频率激活向量，将这个向量和标签当作输入到WEKA来和主要的算法进行对比。方法包括：</p>
+<ul>
+<li><strong>快速傅里叶变换</strong>：</li>
+<li><strong>短时傅里叶变换</strong>：</li>
+<li><strong>梅尔频谱图</strong>：</li>
+<li><strong>梅尔频率系数</strong></li>
+<li><strong>恒Q变换</strong></li>
+</ul>
+<p>结果如下：<br><img src="https://img-blog.csdnimg.cn/89912768c8a2490094c26782ccf43977.png#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>从上图可以发现，用MFCC提取的特征辅以随机森林方法能够将验证准确率达到98.54%，这说明尽管频率分析的方法可能不是最好的方法，但使用频率的信息能够帮助我们达到高的准确率<br>为了更好地探究分类准确率和频谱图之间的差异，我们决定调研哪个频率范围对于分类任务来说更重要，在本文中，我们使用了Chi-square和Information Gain来生成频率分类激活图（Frequency classification activation map）<br><img src="https://img-blog.csdnimg.cn/7661a2a7c51d4414bed6c31fc1a7aa74.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>在上图中，红色意味着对分类的重要性高，绿色意味着重要性低。通过上图可以发现，高频段对于分辨合成音频更加重要。<br>4.3.2 深度学习<br>我们将频率特征用频谱图表示，这样就可以用图像分类的神经网络进行训练。<br><img src="https://img-blog.csdnimg.cn/63212ad48dfb4782840944671921af05.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>训练结果如下：<br><img src="https://img-blog.csdnimg.cn/34062d85681c4c05876a150ad2cbfe61.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_16,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>上文已经提到，利用CAM图来帮助我们获取那个部分对输出影响最大，以狗的分类为例，下图说明狗的眼镜和耳朵对分类影响结果最大：<br><img src="https://img-blog.csdnimg.cn/bdef96ed886a43db8039aaf1a238b080.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_14,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>相似的，我们可以将方法运用到频谱的分类上。如果我们随机从真实语音和合成语音中选取几个数据，对他们做CAM图，结果如下：<br><img src="https://img-blog.csdnimg.cn/8d9db3c029d44b9a9966ec45c03edd8d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_18,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>如果我们2将所有数据的频谱图做平均，再做CAM图，结果如下：<br><img src="https://img-blog.csdnimg.cn/b19d0defdf4b44e897b49a4e7a24043f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_17,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>从上面的图像可以看出，高频段对于识别真实语音很重要。这可能与真实语音中常常含有环境噪声有关。后续关于环境噪声和波形对分类的影响详见附录（明天再看）<br>在现有数据集上，我们发现传统方法和深度学习方法表现得都很好，下一章我们将尝试一种新的TTS算法，再来测试一下两种方法优劣。</p>
+<h3 id="4-4-新的合成语音算法"><a href="#4-4-新的合成语音算法" class="headerlink" title="4.4 新的合成语音算法"></a>4.4 新的合成语音算法</h3><p>我们不仅要看模型在训练数据集上的性能，更关注其泛化能力。因此，我们采用了一种船新的算法（Google TTS Wavenet）来测试两类模型的泛化能力<br>4.4.1 传统方法<br>结果如下：<br><img src="https://img-blog.csdnimg.cn/da55d7bf60ea49968c2a6b00954d01c4.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>我们可以发现，在训练集里表现很好的MFCC音频表示方法在实验中准确率下降了。然而CQT表征在两个数据集里表现都很好<br>对于FCAM图来看，发现和第一次实验一样，即便是新的算法，合成语音与真实语音的最大差别还是在高频段<br>4.4.2 深度学习<br>结果如下：<br><img src="https://img-blog.csdnimg.cn/c8c37236ba964497857b4d400930727d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ3MDc3MTgy,size_15,color_FFFFFF,t_70,g_se,x_16#pic_center" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述"><br>结合之前实验和经典算法，我们也许能够认为CQT的性能最好</p>
 
                 
               </div>
@@ -304,6 +334,13 @@
               <div class="post-metas my-3">
   
   
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/PaperReading/">#PaperReading</a>
+      
+    </div>
+  
 </div>
 
 
@@ -312,20 +349,20 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hello World</div>
-      <div>http://example.com/2022/09/28/hello-world/</div>
+      <div>【论文精读】Speech Anti-spoofing</div>
+      <div>http://example.com/2022/09/29/【无标题】 (3)/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>John Doe</div>
+          <div>Lizh</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年9月28日</div>
+          <div>2022年9月29日</div>
         </div>
       
       
@@ -357,15 +394,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/09/29/jetsonnano/" title="Jetson Nano使用笔记">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Jetson Nano使用笔记</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/09/29/%E3%80%90%E6%97%A0%E6%A0%87%E9%A2%98%E3%80%91%20(2)/" title="Batch Normalization">
+                        <span class="hidden-mobile">Batch Normalization</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>
