@@ -88,7 +88,7 @@
 		{
 			"label":"hair_back",
 			"setup":{
-				"length":0.25,
+				"length":0.2,
 				"regist":0.7,
 				"mass":0.25
 			},
