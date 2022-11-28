@@ -13,29 +13,26 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="author" content="Lizh">
+  <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="End to End Reconstruction-Classification Learning for Fce Forgery Detection这是一篇有参考意义的论文，因为本人发现很少有人用异常检测的思想来做人脸防伪，而正好今年CVPR中了一篇类似的，因此可以用来学习参考。 方法精读Reconstrction Learning首先对原图像X加入白噪声，再用decoder-encoder对图">
+    <meta name="description" content="Diffusion Model基于扩散模型的人脸防伪 原理研读">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文精读】基于端到端重建-分类学习的人脸伪造检测">
-<meta property="og:url" content="http://example.com/2022/10/28/Deepfake/index.html">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2022/11/11/Diffusion%20Model/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="End to End Reconstruction-Classification Learning for Fce Forgery Detection这是一篇有参考意义的论文，因为本人发现很少有人用异常检测的思想来做人脸防伪，而正好今年CVPR中了一篇类似的，因此可以用来学习参考。 方法精读Reconstrction Learning首先对原图像X加入白噪声，再用decoder-encoder对图">
+<meta property="og:description" content="Diffusion Model基于扩散模型的人脸防伪 原理研读">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/deepfake.webp">
-<meta property="article:published_time" content="2022-10-28T00:04:45.000Z">
-<meta property="article:modified_time" content="2022-10-28T00:52:13.432Z">
+<meta property="article:published_time" content="2022-11-11T12:09:46.670Z">
+<meta property="article:modified_time" content="2022-11-11T12:10:29.049Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Face Anti-spoofing">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/deepfake.webp">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【论文精读】基于端到端重建-分类学习的人脸伪造检测 - Hexo</title>
+  <title>Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -217,7 +214,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【论文精读】基于端到端重建-分类学习的人脸伪造检测"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -228,8 +225,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-28 08:04" pubdate>
-          2022年10月28日 早上
+        <time datetime="2022-11-11 20:09" pubdate>
+          2022年11月11日 晚上
         </time>
       </span>
     
@@ -240,7 +237,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          29 字
         
       </span>
     
@@ -251,7 +248,7 @@
         
         
         
-          9 分钟
+          1 分钟
         
       </span>
     
@@ -297,16 +294,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">【论文精读】基于端到端重建-分类学习的人脸伪造检测</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="End-to-End-Reconstruction-Classification-Learning-for-Fce-Forgery-Detection"><a href="#End-to-End-Reconstruction-Classification-Learning-for-Fce-Forgery-Detection" class="headerlink" title="End to End Reconstruction-Classification Learning for Fce Forgery Detection"></a>End to End Reconstruction-Classification Learning for Fce Forgery Detection</h2><p>这是一篇有参考意义的论文，因为本人发现很少有人用异常检测的思想来做人脸防伪，而正好今年CVPR中了一篇类似的，因此可以用来学习参考。</p>
-<h3 id="方法精读"><a href="#方法精读" class="headerlink" title="方法精读"></a>方法精读</h3><h4 id="Reconstrction-Learning"><a href="#Reconstrction-Learning" class="headerlink" title="Reconstrction Learning"></a>Reconstrction Learning</h4><p>首先对原图像X加入白噪声，再用decoder-encoder对图片进行重建。重建损失定义如下。<br><img src="https://img-blog.csdnimg.cn/f724be985b864422a2bf37d3ef8c83fb.png" srcset="/img/loading.gif" lazyload><br>同时，为了让重建之后的真实图像之间更相似，合成图像与真实图像之间差别更大，采用metric learning损失，定义如下，其中，R代表真实图像，F代表encoder或者decoder块的输出特征，然后我们对F做全局平均池化操作，得到特征向量$F_bar$<br><img src="https://img-blog.csdnimg.cn/121fdfe9a81e4cf6bc3dfbd0361b0e55.png" srcset="/img/loading.gif" lazyload><br><img src="https://img-blog.csdnimg.cn/8c1fd4b7962945219967389b3861f472.png" srcset="/img/loading.gif" lazyload><br>对于损失函数L_m，第一部分是希望真实图片之间的距离尽量小，第二部分是希望真实图片和合成图片之间的距离尽量大。但是，跟传统的metric learning loss不同的是，我们没有直接用于特征提取器，而是应用到最后的encoder块和每个decoder块；此外，我们没有限制虚假数据的compactness，因为不同伪造方法的特征相差较大</p>
-<h4 id="Multi-scale-graph-reasoning"><a href="#Multi-scale-graph-reasoning" class="headerlink" title="Multi-scale graph reasoning"></a>Multi-scale graph reasoning</h4><p>在对decoder块计算metric-learning损失时，用于区分真实和合成图像的有用信息被折叠在了decoder里了。因此，为充分利用decoder发现的伪造线索，我们提出了一个多尺度图推理块来将decoder的隐特征和encoder的输出结合输入到一个一式两份图来全面推理伪造线索。<br>在这里，我们取特定尺度的decoder块做描述，将encoder的输出特征和decoder块的每一个输出在不同尺度上聚合，不同尺度上聚合和特征再与encoder特征连接在一起，通过一个sigmoid压缩函数，两个全连接层来得到与encoder特征向量维度一致的特征向量。最后，将这些向量集合在一起构成特征图F<br><img src="https://img-blog.csdnimg.cn/f1b4f917eefd4e92b6e77f897ea7211b.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="Reconstruction-Guided-Attention"><a href="#Reconstruction-Guided-Attention" class="headerlink" title="Reconstruction Guided Attention"></a>Reconstruction Guided Attention</h4><p><img src="https://img-blog.csdnimg.cn/89086a6052f64a97998b524616e045fd.png" srcset="/img/loading.gif" lazyload><br>考虑到重建网络的限制，合成图像重建之后与原图像在视觉差异上较大。这启发我们去利用这之间的差异来表示可能伪造轨迹。因此，我们提出了重建引导注意力模块，来关注那些可能伪造的区域来方便后面的分类。<br>首先，根据原图像和重建后的图像，计算差值矩阵M，定义为两个图像对应位置的像素值差。同时，假设$F_{enh}$为增强后的特征图，计算差值矩阵的注意力图，并在空间上将其作用于增强后的特征图F得到F’，然后我们将F和F’加在一起，得到最终的输出特征<br><img src="https://img-blog.csdnimg.cn/ec3482bc8c6b4e5d937b369b53314f4c.png" srcset="/img/loading.gif" lazyload></p>
-
+                <h3 id="Diffusion-Model"><a href="#Diffusion-Model" class="headerlink" title="Diffusion Model"></a>Diffusion Model</h3><p>基于扩散模型的人脸防伪</p>
+<h4 id="原理研读"><a href="#原理研读" class="headerlink" title="原理研读"></a>原理研读</h4>
                 
               </div>
             
@@ -314,13 +308,6 @@
             <div>
               <div class="post-metas my-3">
   
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/Face-Anti-spoofing/">#Face Anti-spoofing</a>
-      
-    </div>
   
 </div>
 
@@ -330,20 +317,20 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【论文精读】基于端到端重建-分类学习的人脸伪造检测</div>
-      <div>http://example.com/2022/10/28/Deepfake/</div>
+      <div></div>
+      <div>http://example.com/2022/11/11/Diffusion Model/</div>
     </div>
     <div class="license-meta">
       
         <div class="license-meta-item">
           <div>作者</div>
-          <div>Lizh</div>
+          <div>John Doe</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月28日</div>
+          <div>2022年11月11日</div>
         </div>
       
       
@@ -375,9 +362,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/11/11/Diffusion%20Model/" title="">
+                      <a href="/2022/11/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="Python基础数据结构">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">Python基础数据结构</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -385,8 +372,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/10/22/YOLOV5/" title="基于YOLOV5的裂纹检测">
-                        <span class="hidden-mobile">基于YOLOV5的裂纹检测</span>
+                      <a href="/2022/10/28/Deepfake/" title="【论文精读】基于端到端重建-分类学习的人脸伪造检测">
+                        <span class="hidden-mobile">【论文精读】基于端到端重建-分类学习的人脸伪造检测</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
